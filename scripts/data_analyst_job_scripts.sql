@@ -81,9 +81,31 @@ select distinct count (title)
 from data_analyst_jobs
 where title not in ('Analyst', 'Analytics');
 -Ans--1793
+select * from data_analyst_jobs limit 10;
 
--- **BONUS:**
+-- *BONUS:***
+
 -- You want to understand which jobs requiring SQL are hard to fill. Find the number of jobs by industry (domain) that require SQL and have been posted longer than 3 weeks. 
+select domain, count(*) as Hard_to_Fill
+from data_analyst_jobs
+where skill='SQL' and days_since_posting > 12 
+group by domain;
+
 --  - Disregard any postings where the domain is NULL. 
+select domain, count(*) as Hard_to_Fill
+from data_analyst_jobs
+where skill='SQL' and days_since_posting > 12 and domain is not null
+group by domain;
+
 --  - Order your results so that the domain with the greatest number of `hard to fill` jobs is at the top. 
+select domain, count(*) as Hard_to_Fill
+from data_analyst_jobs
+where skill='SQL' and days_since_posting > 12 and domain is not null
+group by domain
+order by Hard_to_Fill desc;
+
 --   - Which three industries are in the top 4 on this list? How many jobs have been listed for more than 3 weeks for each of the top 4?
+"Consulting and Business Services"	5
+"Computers and Electronics"	2
+"Consumer Goods and Services"	2
+"Banks and Financial Services"	2
