@@ -79,7 +79,7 @@ where title like '%Analyst%';
 
 select distinct count (title)
 from data_analyst_jobs
-where title not in ('Analyst', 'Analytics');
+where title not like ('Analyst', 'Analytics'); 
 -Ans--1793
 select * from data_analyst_jobs limit 10;
 
